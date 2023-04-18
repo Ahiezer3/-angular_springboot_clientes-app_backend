@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apirestangular.models.entity.Cliente;
 import com.apirestangular.models.services.ClienteService;
+import com.apirestangular.filters.DinamicFilter;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
@@ -170,5 +171,11 @@ public class ClienteRestController {
 		}
 		
 		return new ResponseEntity<Map<String,Object>>(responseMap, HttpStatus.OK);
+	}
+	
+	@GetMapping("/clientes/especifico")
+	public ResponseEntity<?>findSpecificCliente() {
+		DinamicFilter spec = new DinamicFilter("Abidan", null, "2abi@pruebas.com");
+	    return new ResponseEntity<List<Cliente>>(clienteService.search(spec),HttpStatus.OK);
 	}
 }

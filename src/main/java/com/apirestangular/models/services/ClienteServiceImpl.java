@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.apirestangular.filters.DinamicFilter;
 import com.apirestangular.models.dao.IClienteDAO;
 import com.apirestangular.models.entity.Cliente;
 
@@ -50,6 +51,12 @@ public class ClienteServiceImpl implements ClienteService{
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		clienteDao.deleteById(id);
+	}
+
+	@Override
+	public List<Cliente> search(DinamicFilter dinamic) {
+		// TODO Auto-generated method stub
+		return clienteDao.findAll(dinamic);
 	}
 
 }
